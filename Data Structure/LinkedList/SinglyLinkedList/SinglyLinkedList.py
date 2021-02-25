@@ -8,7 +8,7 @@ class SinglyLinkedList:
 	def __len__(self):
 		return self.size
 	
-	def printList(self): # 변경없이 사용할 것!
+	def printList(self): 
 		v = self.head
 		while(v):
 			print(v.key, "->", end=" ")
@@ -95,7 +95,6 @@ class SinglyLinkedList:
 			return False
 		 
 	
-# 아래 코드는 수정하지 마세요!
 L = SinglyLinkedList()
 while True:
 	cmd = input().split()
