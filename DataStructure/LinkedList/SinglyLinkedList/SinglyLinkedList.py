@@ -94,6 +94,10 @@ class SinglyLinkedList:
 				current = current.next
 			return False
 		 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 32e90807530e7973f580528e6c7bef2addbeb608
 L = SinglyLinkedList()
 while True:
 	cmd = input().split()
