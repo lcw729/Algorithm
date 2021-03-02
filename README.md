@@ -8,3 +8,4 @@
 * [배열과 리스트](https://www.notion.so/e4149c35587c4bd4b48787d5b4580b0e)
 * [스택](https://www.notion.so/stack-6d4dd820299b4f6ba8d0b077c6ee3f8d)
 * [큐](https://www.notion.so/queue-48fffbced127406283eb92988b9893c2)
+* [힙](https://www.notion.so/04887fe68f6a4893a04170253a24e25e)
