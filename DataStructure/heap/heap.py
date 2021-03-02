@@ -40,9 +40,34 @@ class Heap:
             n = n - 1
             self.heapify_down(0, n) # 0부터 n-1까지 재정렬
             
+    def heapify_up(self, k):
+        p = (k - 1) // 2
+        while p >= 0:
+            if self.A[p] <= self.A[k]:
+                self.A[p], self.A[k] = self.A[k], self.A[p]
+                k = p
+                p = (k - 1) // 2
+            else:
+                break
+        
+    def insert(self, k):
+        self.A.append(k)
+        self.heapify_up(len(self.A)-1)
+
+    def delete_max(self):
+        if len(self.A) == 0:
+            return None 
+        key = self.A[0]
+        self.A[0], self.A[len(self.A)-1] = self.A[len(self.A)-1], self.A[0]
+        self.A.pop()
+        self.heapify_down(0, len(self.A))
+        return key
+
 
 S = [int(x) for x in input().split()]
 H = Heap(S)
 H.make_heap()
-H.heap_sort()
+H.insert(14)
+H.insert(25)
+H.delete_max()
 print(H)
