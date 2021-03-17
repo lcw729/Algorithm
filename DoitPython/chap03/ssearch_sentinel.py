@@ -5,10 +5,11 @@ import copy
 
 def seq_search(seq: Sequence, key: Any) -> int:
     """시퀸스 seq에서 key와 일치하는 원소를 선형 검색(보초법)"""
+    a = copy.deepcopy(seq) # seq 복사
+    a.append(key) # 보초 key를 추가
+    
     i = 0
     while True:
-        a = copy.deepcopy(seq) # seq 복사
-        a.append(key) # 보초 key를 추가
 
         if a[i] == key:
             break
