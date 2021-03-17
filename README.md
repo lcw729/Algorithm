@@ -9,3 +9,7 @@
 * [스택](https://www.notion.so/stack-6d4dd820299b4f6ba8d0b077c6ee3f8d)
 * [큐](https://www.notion.so/queue-48fffbced127406283eb92988b9893c2)
 * [힙](https://www.notion.so/04887fe68f6a4893a04170253a24e25e)
+
+### Do It Python
+* [ch1](https://github.com/lcw729/Algorithm/tree/master/DoitPython/chap01)
+* [ch2](https://github.com/lcw729/Algorithm/tree/master/DoitPython/chap02)
