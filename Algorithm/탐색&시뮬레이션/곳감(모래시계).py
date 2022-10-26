@@ -13,10 +13,18 @@ for _ in range(m):
 
 def move(k, p, q):
     q = q % n
-    if p:
+    if p: # 오른쪽
         nlist[k-1] = nlist[k-1][-q:] + nlist[k-1][0:n-q]
-    else:
+        """
+        for _ in range(q):
+            nlist[k-1].append(nlist[k-1].pop(0))
+        """
+    else: # 왼쪽
         nlist[k-1] = nlist[k-1][q:] + nlist[k-1][0:q]
+        """
+        for _ in range(q):
+            nlist[k-1].insert(0, nlist[k-1].pop())
+        """        
 
 for i in mlist:
     k, p, q = map(int, i)
