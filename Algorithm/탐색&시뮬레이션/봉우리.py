@@ -2,6 +2,8 @@ from curses import nl
 from imaplib import Int2AP
 from turtle import right
 
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
 
 n = int(input())
 nlist = []
@@ -9,11 +11,23 @@ nlist = []
 for _ in range(n):
     nlist.append(list(map(int, input().split())))
 
+nlist.insert(0, [0]*n)
+nlist.append(0, [0]*n)
+for x in nlist:
+    x.insert(0, 0)
+    x.append(0)
 
+cnt = 0
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        if all(nlist[i][j] > nlist[i+dx[k]][j+dx[k]] for k in range(4)):
+            cnt += 1
+
+"""
 isVisited = [[ 0 for _ in range(n)] for _ in range(n)]
 cnt = 0
-for i in range(n):
-    for j in range(n):
+for i in range(1,n+1):
+    for j in range(1,n+1):
         if isVisited[i][j] == 0:
             L = j - 1
             R = j + 1
@@ -47,5 +61,5 @@ for i in range(n):
             cnt += 1
         elif isVisited[i][j] == -1:
             continue
-
+"""
 print(cnt)
