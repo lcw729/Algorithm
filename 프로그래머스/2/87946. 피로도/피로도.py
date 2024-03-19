@@ -1,23 +1,22 @@
 from itertools import permutations
 
 def solution(k, dungeons):
-    maximum = 0
-    result = 0
+    global answer
+    global visited
     
-    nPr = permutations(dungeons, len(dungeons))
-    for current in list(nPr):
-        result = completion(k, current)
-        if (result > maximum):
-            maximum = result
+    answer = 0
+    visited = [0 for i in range(len(dungeons)+1)]
+    dfs(k, 0, dungeons)
         
-    return maximum
+    return answer
 
-def completion(k, dungeons):
-    count = 0
-    for dungeon in dungeons:
-        [minimun, consume] = dungeon
-        if (minimun > k or consume > k):
-            return count
-        k = k - consume
-        count = count + 1
-    return count
+def dfs(pirodo, cnt, dungeons):
+    global answer
+    if cnt > answer:
+        answer = cnt
+    for idx, dungeon in enumerate(dungeons):
+        [minimum, consume] = dungeon
+        if (not visited[idx]) and pirodo >= minimum:
+            visited[idx] = 1
+            dfs(pirodo - consume, cnt + 1, dungeons);
+            visited[idx] = 0
