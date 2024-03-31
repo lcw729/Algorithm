@@ -1,25 +1,39 @@
-from itertools import permutations
-from math import sqrt
-
 def solution(numbers):
-    answer = 0
-    # 순열 구하기
-    per = []
-    for n in range(1, len(numbers)+1):
-        per += permutations(numbers, n)
-    per = set([ int("".join(p)) for p in per]) # 중복 제거
+    global permuList
+    permuList = []
     
-    # 소수인지 확인하기
-    for num in per:
-        if isPrime(num):
-            answer += 1
-        
+    answer = 0
+    permutation(list(numbers))
+    for num in permuList:
+        print(num, isPrime(num))
+        if (isPrime(num)): answer += 1
+    
     return answer
 
+def permutation(numbers):
+    storage = []
+
+    if len(numbers) == 1:
+        if int(numbers[0]) not in permuList:
+            permuList.append(int(numbers[0]))  # 한글자면 반환
+        return numbers
+    
+    for idx, current in enumerate(numbers):
+        numbers[0], numbers[idx] = numbers[idx], numbers[0]  # 첫번째 숫자
+        for result in permutation(numbers[1:]):
+            num = numbers[0] + ''.join(result)
+            if int(num) not in permuList:
+                permuList.append(int(num))
+            storage.append(num)
+                
+    return storage
+
 def isPrime(num):
-    if (num < 2):
+    if num <= 1: 
         return False
-    for i in range(2, int(num ** 0.5) + 1):
+    if (num == 2 or num == 3):
+        return True
+    for i in range(2, int(num ** 1/2) + 1):
         if num % i == 0:
             return False
     return True
