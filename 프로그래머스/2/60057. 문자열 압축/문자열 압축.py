@@ -1,30 +1,35 @@
 def solution(s):
-    answer = 0
     minimum = len(s)
-    for l in range(1, len(s)//2+1):
-        result = calculateResult(l, s)
-        if result < minimum:
-            minimum = result
     
-    return minimum
-
-def calculateResult(l, s):
-    lst = list()
-    count = 1
-    for idx in range(0, len(s) + 1, l): # 0 ~ 끝까지 l 간격으로
-        if idx+l >= len(s): 
-            targetStr = s[idx:]
-        else:
-            targetStr = s[idx:idx+l]
-        if len(lst) > 0:
-            if lst[len(lst) - 1] == targetStr: 
-                count += 1
+    for num in range(1, len(s)//2 + 1):
+        idx = 0
+        pattern = ''
+        count=1
+        current_count=0
+        while True:
+            if idx+num <= len(s):
+                if idx==0: # 처음 탐색
+                    pattern=s[idx:idx+num] # 초기 패턴 지정
+                else:
+                    if s[idx:idx+num] == pattern: # 패턴 동일
+                        count+=1 # 카운트 증가
+                    else: # 패턴 동일하지 않음
+                        current_count+=num # 기존 패턴 길이 저장
+                        if count!=1:
+                            current_count+=len(str(count)) # 카운트 길이 저장
+                        pattern=s[idx:idx+num] # 새로운 패턴 지정
+                        count=1 # 카운트 초기화
             else:
-                if count > 1: 
-                    lst.append(str(count))
-                lst.append(targetStr)
-                count = 1
-        else: 
-            lst.append(targetStr)
-    
-    return len(''.join(lst))
+                if pattern != '':
+                    current_count+=num
+                if count != 1:
+                    current_count+=len(str(count))
+                current_count+=len(s[idx:])
+                print(current_count)
+                break
+            idx=idx+num # 다음 단위로 변경
+        if current_count<minimum:
+            minimum=current_count
+        
+        
+    return minimum
